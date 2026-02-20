@@ -1,0 +1,46 @@
+name: Verify Template
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.12", "3.13", "3.14"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          enable-cache: true
+
+      - name: Install Django
+        run: uv pip install "django>=6.0"
+
+      - name: Create project from template
+        run: django-admin startproject --template=. test_project
+
+      - name: Verify scaffolded project
+        run: |
+          cd test_project
+          
+          # Initialize environment
+          uv sync
+          
+          # Create a dummy .env for verification
+          echo "SECRET_KEY=django-insecure-test-key-$(openssl rand -hex 12)" > .env
+          echo "DEBUG=True" >> .env
+          echo "ALLOWED_HOSTS=*" >> .env
+          
+          # Run Django checks
+          uv run python src/manage.py check
+          
+          # Verify migrations
+          uv run python src/manage.py migrate
