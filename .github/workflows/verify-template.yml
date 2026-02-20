@@ -2,9 +2,9 @@ name: Verify Template
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   verify:
@@ -25,22 +25,22 @@ jobs:
         run: uv pip install "django>=6.0"
 
       - name: Create project from template
-        run: django-admin startproject --template=. test_project
+        run: django-admin startproject --template=. -n pyproject.toml test_project
 
       - name: Verify scaffolded project
         run: |
           cd test_project
-          
+
           # Initialize environment
           uv sync
-          
+
           # Create a dummy .env for verification
           echo "SECRET_KEY=django-insecure-test-key-$(openssl rand -hex 12)" > .env
           echo "DEBUG=True" >> .env
           echo "ALLOWED_HOSTS=*" >> .env
-          
+
           # Run Django checks
           uv run python src/manage.py check
-          
+
           # Verify migrations
           uv run python src/manage.py migrate

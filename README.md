@@ -2,8 +2,8 @@
 
 A production-ready Django template designed for Python 3.12, 3.13, and 3.14. Built with modern tooling to ensure a fast developer experience and secure deployments.
 
-[!NOTE]
-This template uses the src-layout structure
+> [!NOTE]
+> This template uses the src-layout structure
 
 ## Quick Start
 
@@ -12,7 +12,7 @@ Create a new project using the Django CLI. Since this template includes modern c
 ```bash
 django-admin startproject \
   --template=<TEMPLATE_ZIP_URL> \
-  -n pyproject.toml,Dockerfile \
+  -n pyproject.toml \
   [YOUR_PROJECT_NAME]
 ```
 
@@ -20,7 +20,11 @@ The `TEMPLATE_ZIP_URL` should be the path to the latest release artifact, unless
 
 ### Next Steps
 
-1. Initialize Environment:
+1. Replace authorship:
+
+    In [`pyproject.toml`](./pyproject.toml), replace me with the scaffolded project author(s)
+
+2. Initialize Environment:
 
     ```bash
     cd my_project
