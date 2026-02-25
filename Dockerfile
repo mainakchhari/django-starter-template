@@ -28,5 +28,8 @@ COPY --chown=appuser:appuser src/ .
 # Prioritize the virtual environment in the system path
 ENV PATH="/app/.venv/bin:$PATH"
 
+# Static files
+RUN ./manage.py collectstatic --noinput
+
 # Run your app via the injected Gunicorn
 CMD ["gunicorn"]
