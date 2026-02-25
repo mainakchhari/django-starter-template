@@ -20,9 +20,9 @@ The `TEMPLATE_ZIP_URL` should be the path to the latest release artifact, unless
 
 ### Next Steps
 
-1. Replace authorship:
+1. Add authorship:
 
-    In [`pyproject.toml`](./pyproject.toml), replace me with the scaffolded project author(s)
+    In [`pyproject.toml`](./pyproject.toml), add project author(s)
 
 2. Initialize Environment:
 
@@ -55,6 +55,7 @@ The `TEMPLATE_ZIP_URL` should be the path to the latest release artifact, unless
 
 This is an opinionated template focused on ease of use and good practices:
 
-*   [uv](https://astral.sh/uv): Handles dependency management and virtual environments with extreme speed. Run `uv sync` to generate your `uv.lock`.
-*   [django-environ](https://github.com/joke2k/django-environ): Manages configuration via environment variables, keeping secrets secure.
-*   [whitenoise](https://whitenoise.readthedocs.io/): Efficiently serves static files directly from Django, simplifying Docker and production deployments.
+- [uv](https://astral.sh/uv): Handles dependency management and virtual environments with extreme speed. Run `uv sync` to generate your `uv.lock`.
+- [django-environ](https://github.com/joke2k/django-environ): Manages configuration via environment variables, keeping secrets secure.
+- [whitenoise](https://whitenoise.readthedocs.io/): Efficiently serves static files directly from Django, simplifying Docker and production deployments.
+- [django-rich](https://github.com/adamchainz/django-rich): Adds rich color output to test runners, runserver
